@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import os
 from time import sleep
-#parte de conexão com o site web
+#parte de conexão com o site webw
 driver = webdriver.Chrome()
 driver.get('https://www.olx.com.br/')
 
@@ -34,29 +34,54 @@ for produto, preco in zip(produtos, precos):
     valor = preco.text.strip()
 
     if nome and valor:  # só escreve se ambos não forem vazios
+        if not os.path.exists('preços.csv'):
+            with open('preços.csv', 'w', encoding='utf-8') as arquivo:
+                arquivo.write('produto,preco\n')
+
         with open('preços.csv', 'a', encoding='utf-8') as arquivo:
-            arquivo.write(f'{nome},{valor}{os.linesep}')
+            arquivo.write(f'{nome},{valor}\n')
+
+
 
 for produto2,preco2 in zip(produtos2,precos2):
-    with open('preços.csv', 'a',encoding='utf-8') as arquivo:
-        arquivo.write(f'{produto2.text},{preco2.text}{os.linesep}')
+    nome2 = produto2.text.strip()
+    valor2 = preco2.text.strip()
+
+    if nome2 and valor2:  
+        if not os.path.exists('preços.csv'):
+            with open('preços.csv', 'w', encoding='utf-8') as arquivo:
+                arquivo.write('produto,preco\n')
+
+        with open('preços.csv', 'a', encoding='utf-8') as arquivo:
+            arquivo.write(f'{nome2},{valor2}\n')
+    
+
 
 for produto3, preco3 in zip(produtos3, precos3):
     nome3 = produto3.text.strip()
     valor3 = preco3.text.strip()
 
-    if nome3 and valor3:  # só escreve se ambos não forem vazios
+    if nome3 and valor3: 
+        if not os.path.exists('preços.csv'):
+            with open('preços.csv', 'w', encoding='utf-8') as arquivo:
+                arquivo.write('produto,preco\n')
+
         with open('preços.csv', 'a', encoding='utf-8') as arquivo:
-            arquivo.write(f'{nome3},{valor3}{os.linesep}')
+            arquivo.write(f'{nome3},{valor3}\n')
+    
 
 
 for produto4, preco4 in zip(produtos4, precos4):
     nome4 = produto.text.strip()
     valor4 = preco.text.strip()
 
-    if nome4 and valor4:  # só escreve se ambos não forem vazios
+    if nome4 and valor4:  
+        if not os.path.exists('preços.csv'):
+            with open('preços.csv', 'w', encoding='utf-8') as arquivo:
+                arquivo.write('produto,preco\n')
+
         with open('preços.csv', 'a', encoding='utf-8') as arquivo:
-            arquivo.write(f'{nome4},{valor4}{os.linesep}')
+            arquivo.write(f'{nome4},{valor4}\n')
     
 
 driver.quit()
